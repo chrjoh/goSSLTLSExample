@@ -1,0 +1,47 @@
+<h1>Result for host:</h1>
+
+<div>
+  <h2>{{.Host}}</h2>
+  Versions supported:
+  <ul style="list-style: none;">
+    {{range .Versions}}
+        <li>
+          {{.}}
+        </li>
+    {{end}}
+  </ul>
+  Versions NOT supported:
+  <ul style="list-style: none;">
+    {{range .VersionsNotSupported}}
+        <li>
+          {{.}}
+        </li>
+    {{end}}
+  </ul>
+
+  Ciphers supported:
+  <ul style="list-style: none;">
+    {{range .CipherSuites}}
+        <li>
+          {{.}}
+        </li>
+    {{end}}
+  </ul>
+  Ciphers  NOT supported:
+  <ul style="list-style: none;">
+    {{range .CipherSuitesNotSupported}}
+        <li>
+          {{.}}
+        </li>
+    {{end}}
+  </ul>
+  Check another host: <br />
+  <form action="/" method="POST">
+    <div>
+      hostname <input type="text" name="host" size="120">
+    </div>
+    <div><input type="submit" value="Send"></div>
+  </form>
+
+  <a href="/">Back</a>
+</div>
