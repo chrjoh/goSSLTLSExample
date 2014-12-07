@@ -1,40 +1,34 @@
-<h1>Result for host:</h1>
-
 <div>
-  <h2>{{.Host}}</h2>
-  Versions supported:
+  {{range $a := .}}
   <ul style="list-style: none;">
-    {{range .Versions}}
-        <li>
-          {{.}}
-        </li>
+    <li>
+      Version: {{$a.Version}} <br />
+      {{if $a.Supported}}
+        Supported
+      {{else}}
+        <div style="color: #ff0000">NOT supported</div>
+      {{end}}
+    </li>
+    {{if $a.Supported}}
+      Ciphers supported:
+      <ul style="list-style: none;">
+        {{range $a.Sciphers}}
+            <li>
+              {{.}}
+            </li>
+        {{end}}
+      </ul>
+      Ciphers  NOT supported:
+      <ul style="list-style: none;">
+        {{range $a.Nciphers}}
+            <li>
+              {{.}}
+            </li>
+        {{end}}
+      </ul>
     {{end}}
   </ul>
-  Versions NOT supported:
-  <ul style="list-style: none;">
-    {{range .VersionsNotSupported}}
-        <li>
-          {{.}}
-        </li>
-    {{end}}
-  </ul>
-
-  Ciphers supported:
-  <ul style="list-style: none;">
-    {{range .CipherSuites}}
-        <li>
-          {{.}}
-        </li>
-    {{end}}
-  </ul>
-  Ciphers  NOT supported:
-  <ul style="list-style: none;">
-    {{range .CipherSuitesNotSupported}}
-        <li>
-          {{.}}
-        </li>
-    {{end}}
-  </ul>
+  {{end}}
   Check another host: <br />
   <form action="/" method="POST">
     <div>
