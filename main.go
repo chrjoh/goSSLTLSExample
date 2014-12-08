@@ -17,7 +17,9 @@ type TLSSSL struct {
 	Nciphers  []string
 }
 
-var tlsCipherLookup = map[uint16]string{
+type lookUpMap map[uint16]string
+
+var tlsCipherLookup = lookUpMap{
 	tls.TLS_RSA_WITH_RC4_128_SHA:                `TLS_RSA_WITH_RC4_128_SHA`,
 	tls.TLS_RSA_WITH_3DES_EDE_CBC_SHA:           `TLS_RSA_WITH_3DES_EDE_CBC_SHA`,
 	tls.TLS_RSA_WITH_AES_128_CBC_SHA:            `TLS_RSA_WITH_AES_128_CBC_SHA`,
@@ -33,7 +35,7 @@ var tlsCipherLookup = map[uint16]string{
 	tls.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256: `TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256`,
 }
 
-var tlsVersionLookup = map[uint16]string{
+var tlsVersionLookup = lookUpMap{
 	tls.VersionSSL30: `VersionSSL30`,
 	tls.VersionTLS10: `VersionTLS10`,
 	tls.VersionTLS11: `VersionTLS11`,
@@ -127,14 +129,14 @@ func tlsVersionSupported(host string, version uint16) error {
 }
 
 func knownCiphers() []uint16 {
-	return keysFromMap((map[uint16]string)(tlsCipherLookup))
+	return keysFromMap(tlsCipherLookup)
 }
 
 func knownVersions() []uint16 {
-	return keysFromMap((map[uint16]string)(tlsVersionLookup))
+	return keysFromMap(tlsVersionLookup)
 }
 
-func keysFromMap(myMap map[uint16]string) []uint16 {
+func keysFromMap(myMap lookUpMap) []uint16 {
 	keys := make([]uint16, 0, len(myMap))
 	for k := range myMap {
 		keys = append(keys, k)
