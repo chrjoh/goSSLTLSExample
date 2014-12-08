@@ -1,12 +1,16 @@
 <div>
+  Cipher syntax:
+      (Protocol)_(Key Exchange)_(Auth)_WITH_(Algorithm)_(mac)
   {{range $a := .}}
   <ul style="list-style: none;">
     <li>
-      Version: {{$a.Version}} <br />
+      <div style="font-size: 20">
+        Version: {{$a.Version}} <br />
+      </div>
       {{if $a.Supported}}
         Supported
       {{else}}
-        <div style="color: #ff0000">NOT supported</div>
+        <div>NOT supported</div>
       {{end}}
     </li>
     {{if $a.Supported}}
