@@ -5,7 +5,7 @@
   <ul style="list-style: none;">
     <li>
       <div style="font-size: 20">
-        Version: {{$a.Version}} <br />
+        Protocol version: {{$a.Version}} <br />
       </div>
       {{if $a.Supported}}
         Supported
@@ -22,7 +22,7 @@
             </li>
         {{end}}
       </ul>
-      Ciphers  NOT supported:
+      Ciphers NOT supported:
       <ul style="list-style: none;">
         {{range $a.Nciphers}}
             <li>
